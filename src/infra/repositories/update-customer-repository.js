@@ -5,6 +5,10 @@ const MongoHelper = require('../helpers/mongo-helper');
 
 module.exports = class UpdateCustomerRepository {
   async update(id, data) {
+    if (!id) {
+      throw new MissingParamError('id');
+    }
+
     if (!data) {
       throw new MissingParamError('data');
     }

@@ -2,7 +2,7 @@ const HttpResponse = require('../helpers/http-response');
 const { MissingParamError } = require('../../utils/errors');
 const handleException = require('../../utils/errors/handle-exception');
 
-module.exports = class LoadCustomerByIdRouter {
+module.exports = class DeleteCustomerByIdRouter {
   constructor({ deleteCustomerByIdUsecase } = {}) {
     this.deleteCustomerByIdUsecase = deleteCustomerByIdUsecase;
   }

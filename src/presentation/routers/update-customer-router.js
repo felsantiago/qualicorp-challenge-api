@@ -2,7 +2,7 @@ const HttpResponse = require('../helpers/http-response');
 const { MissingParamError } = require('../../utils/errors');
 const handleException = require('../../utils/errors/handle-exception');
 
-module.exports = class CreateCustomerRouter {
+module.exports = class UpdateCustomerRouter {
   constructor({ updateCustomerUseCase } = {}) {
     this.updateCustomerUseCase = updateCustomerUseCase;
   }
@@ -11,6 +11,10 @@ module.exports = class CreateCustomerRouter {
     try {
       const { id } = httpRequest.params;
       const { name, email, telephone, cpf } = httpRequest.body;
+
+      if (!id) {
+        return HttpResponse.badRequest(new MissingParamError('id'));
+      }
 
       if (!name) {
         return HttpResponse.badRequest(new MissingParamError('name'));

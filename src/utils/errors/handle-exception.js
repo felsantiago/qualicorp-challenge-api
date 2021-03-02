@@ -12,7 +12,7 @@ const execute = (error) => {
     return httpResponse.notFound(error);
   }
 
-  return error;
+  return null;
 };
 
 module.exports = execute;

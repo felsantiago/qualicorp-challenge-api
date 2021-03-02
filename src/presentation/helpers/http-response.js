@@ -1,4 +1,4 @@
-const { UnauthorizedError, ServerError } = require('../errors');
+const { ServerError } = require('../errors');
 
 module.exports = class HttpResponse {
   static ok(body) {
@@ -29,24 +29,6 @@ module.exports = class HttpResponse {
       statusCode: 404,
       body: {
         error: error.message,
-      },
-    };
-  }
-
-  static unprocessableEntity(error) {
-    return {
-      statusCode: 422,
-      body: {
-        error: error.message,
-      },
-    };
-  }
-
-  static unauthorizedError() {
-    return {
-      statusCode: 401,
-      body: {
-        error: new UnauthorizedError().message,
       },
     };
   }

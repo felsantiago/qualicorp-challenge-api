@@ -38,6 +38,7 @@ const makeLoadCustomerByIdUsecase = () => {
   }
   const loadCustomerByIdUsecaseSpy = new LoadCustomerByIdUsecaseSpy();
   loadCustomerByIdUsecaseSpy.customer = customer;
+  loadCustomerByIdUsecaseSpy.customerExist = undefined;
   return loadCustomerByIdUsecaseSpy;
 };
 
@@ -77,10 +78,7 @@ describe('Delete customer UseCase', () => {
     const { sut, deleteCustomerByIdRepositorySpy } = makeSut();
     await sut.delete({ id: newId });
 
-    expect(deleteCustomerByIdRepositorySpy.result).toEqual({
-      n: 1,
-      ok: 1,
-    });
+    expect(deleteCustomerByIdRepositorySpy.customerExist).toEqual();
   });
 
   test('Should throw if invalid dependencies are provided', () => {

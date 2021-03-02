@@ -7,11 +7,11 @@ const MongoHelper = require('../../infra/helpers/mongo-helper');
 let customerModel;
 
 const mongoObjectId = () => {
-  const timestamp = ((new Date().getTime() / 1000) || 0).toString(16);
+  const timestamp = (new Date().getTime() / 1000 || 0).toString(16);
   return (
     timestamp +
     'xxxxxxxxxxxxxxxx'
-      .replace(/[x]/g, () => ((Math.random() * 16) || 0).toString(16))
+      .replace(/[x]/g, () => (Math.random() * 16 || 0).toString(16))
       .toLowerCase()
   );
 };
@@ -111,9 +111,12 @@ describe('Customers Routes', () => {
       const data = {
         name: chance.name(),
         email: chance.email(),
-        cpf: chance.integer({ min: 0, max: 11 }),
+        telephone: chance.phone(),
       };
-      await request(app).post('/api/customers').send(data).expect(400);
+      await request(app)
+        .post('/api/customers')
+        .send(data)
+        .expect(400);
     });
   });
 

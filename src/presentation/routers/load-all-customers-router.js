@@ -1,5 +1,4 @@
 const HttpResponse = require('../helpers/http-response');
-const handleException = require('../../utils/errors/handle-exception');
 
 module.exports = class LoadAllCustomersRouter {
   constructor({ loadAllCustomersUsecase } = {}) {
@@ -12,8 +11,6 @@ module.exports = class LoadAllCustomersRouter {
 
       return HttpResponse.ok(customers);
     } catch (error) {
-      const resultException = handleException(error);
-      if (resultException) return resultException;
       return HttpResponse.serverError();
     }
   }
